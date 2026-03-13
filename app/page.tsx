@@ -1,8 +1,13 @@
 "use client";
 
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { useRouter } from 'next/navigation'; // Adăugat pentru redirecționare
 import { useAuth } from '@/lib/useAuth';
+=======
+import { useAuth } from '@/lib/useAuth';
+// Importăm contextul global în loc de hook-ul local
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
 import { useDashboardContext } from '@/lib/context/DashboardContext'; 
 import { AnimatePresence } from 'framer-motion';
 
@@ -25,6 +30,7 @@ import WaterModal from '@/app/components/modals/WaterModal';
 
 export default function PremiumNutritionApp() {
   const { userId } = useAuth();
+<<<<<<< HEAD
   const router = useRouter(); // Inițializăm router-ul
   
   // 1. UTILIZĂM DATELE DIN CONTEXTUL GLOBAL
@@ -32,6 +38,13 @@ export default function PremiumNutritionApp() {
   const { 
     meals, waterGlasses, totalCalories, totalProteins, 
     burnedCalories, // NOU: Extragem caloriile arse
+=======
+  
+  // 1. UTILIZĂM DATELE DIN CONTEXTUL GLOBAL (Fără lag la navigare)
+  const { dailyStats } = useDashboardContext();
+  const { 
+    meals, waterGlasses, totalCalories, totalProteins, 
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
     isSavingMeal, isSavingWater, addMeal, drinkWater 
   } = dailyStats;
 
@@ -65,12 +78,15 @@ export default function PremiumNutritionApp() {
     if (userId) await drinkWater();
   };
 
+<<<<<<< HEAD
   // NOU: Ce se întâmplă când dă click pe cardul de Calorii Arse
   const handleWorkoutClick = () => {
     if (userId) router.push('/dashboard/antrenamente');
     else alert("Pika! ⚡ Loghează-te pentru a-ți vedea antrenamentele!");
   };
 
+=======
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
   const handleAddMealSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!userId || !newMealName || !newMealCalories) return;
@@ -110,17 +126,28 @@ export default function PremiumNutritionApp() {
           totalProteins={totalProteins}
           currentWater={waterGlasses}
           isSavingWater={isSavingWater}
+<<<<<<< HEAD
           burnedCalories={burnedCalories || 0} // Trimitem valoarea către grid
+=======
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
           handleCalorieClick={handleCalorieClick}
           handleProteinClick={handleProteinClick}
           handleWaterClick={handleWaterClick}
           handleDrinkWater={handleDrinkWaterClick}
+<<<<<<< HEAD
           handleWorkoutClick={handleWorkoutClick} // Trimitem funcția de click
         />
       </div>
       
       <RotatingTickets />
       <TestimonialsSection />
+=======
+        />
+      </div>
+
+      <TestimonialsSection />
+      <RotatingTickets />
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
       <SponsorsSection />
       <ContactSection />
 

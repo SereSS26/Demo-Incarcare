@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 "use client";
 
 import React from 'react';
 import Sidebar from '@/app/components/dashboard/Sidebar';
 import { DashboardProvider } from '@/lib/context/DashboardContext';
 import StarsCanvas from '@/app/components/canvas/Stars';
+=======
+import React from 'react';
+import Sidebar from '@/app/components/dashboard/Sidebar';
+import { DashboardProvider } from '@/lib/context/DashboardContext';
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
 
 export default function DashboardLayout({
   children,
@@ -11,6 +17,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
+<<<<<<< HEAD
     <DashboardProvider>
       <div className="flex min-h-screen bg-[#030303] text-white selection:bg-fuchsia-600 selection:text-white overflow-hidden relative">
         
@@ -34,6 +41,16 @@ export default function DashboardLayout({
           <div className="relative h-full w-full overflow-y-auto custom-scrollbar">
             {children}
           </div>
+=======
+    // Învelim totul în Provider-ul nostru care ține datele în memorie
+    <DashboardProvider>
+      <div className="flex min-h-screen bg-[#030303] text-white selection:bg-fuchsia-600 selection:text-white overflow-hidden">
+        
+        <Sidebar />
+
+        <div className="flex-1 relative h-screen overflow-hidden">
+          {children}
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
         </div>
         
       </div>

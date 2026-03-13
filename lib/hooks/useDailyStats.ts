@@ -9,7 +9,10 @@ export function useDailyStats(userId: string | null | undefined) {
   const [meals, setMeals] = useState<Meal[]>([]);
   const [waterGlasses, setWaterGlasses] = useState(0);
   const [todayWorkout, setTodayWorkout] = useState("Fără antrenament");
+<<<<<<< HEAD
   const [burnedCalories, setBurnedCalories] = useState(0); // NOU
+=======
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
   const [loading, setLoading] = useState(true);
   const [isSavingMeal, setIsSavingMeal] = useState(false);
   const [isSavingWater, setIsSavingWater] = useState(false);
@@ -24,12 +27,17 @@ export function useDailyStats(userId: string | null | undefined) {
       const [ waterRes, mealsRes, exercisesRes ] = await Promise.all([
         supabase.from('daily_stats').select('water_glasses').eq('user_id', userId).eq('date', today).maybeSingle(),
         supabase.from('meals').select('*').eq('user_id', userId).eq('date', today).order('created_at', { ascending: true }),
+<<<<<<< HEAD
         // Selectăm și calories_burned pentru a le putea aduna (eliminăm limit(1) ca să putem calcula totalul)
         supabase.from('exercises').select('name, calories_burned').eq('user_id', userId).eq('date', today)
+=======
+        supabase.from('exercises').select('name').eq('user_id', userId).eq('date', today).limit(1)
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
       ]);
 
       if (waterRes.data) setWaterGlasses(waterRes.data.water_glasses || 0);
       if (mealsRes.data) setMeals(mealsRes.data);
+<<<<<<< HEAD
       
       if (exercisesRes.data) {
         // Dacă are cel puțin un exercițiu, îi setăm numele ultimului ca "workout de azi"
@@ -41,6 +49,9 @@ export function useDailyStats(userId: string | null | undefined) {
         const totalBurned = exercisesRes.data.reduce((sum, ex) => sum + (ex.calories_burned || 0), 0);
         setBurnedCalories(totalBurned);
       }
+=======
+      if (exercisesRes.data && exercisesRes.data.length > 0) setTodayWorkout(exercisesRes.data[0].name);
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
 
     } catch (error) {
       console.error("Eroare la fetch-ul datelor:", error);
@@ -109,7 +120,10 @@ export function useDailyStats(userId: string | null | undefined) {
     meals,
     waterGlasses,
     todayWorkout,
+<<<<<<< HEAD
     burnedCalories, // Exportăm caloriile arse către context
+=======
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
     totalCalories,
     totalProteins,
     loading,

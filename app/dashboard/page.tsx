@@ -1,7 +1,10 @@
 "use client";
 
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { useRouter } from 'next/navigation'; // NOU: Pentru redirecționări
+=======
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
 import { motion, AnimatePresence } from 'framer-motion';
 import { Flame, Droplet, Dumbbell } from 'lucide-react';
 
@@ -18,10 +21,17 @@ import StatCard from '@/app/components/dashboard/StatCard';
 import MealsList from '@/app/components/dashboard/MealsList';
 
 export default function Dashboard() {
+<<<<<<< HEAD
   const router = useRouter(); // Inițializare router
   const { dailyStats } = useDashboardContext();
   
   // Extragem datele și noile funcții pentru apă
+=======
+  // Extragem dailyStats direct din memorie prin contextul global
+  const { dailyStats } = useDashboardContext();
+  
+  // Destructurăm datele de care avem nevoie
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
   const { 
     meals, 
     waterGlasses, 
@@ -29,16 +39,27 @@ export default function Dashboard() {
     totalCalories, 
     loading, 
     isSavingMeal, 
+<<<<<<< HEAD
     addMeal,
     drinkWater, // Extragem funcția
     isSavingWater // Extragem statusul de loading
   } = dailyStats;
 
+=======
+    addMeal 
+  } = dailyStats;
+
+  // Stări locale doar pentru controlul formularului din modal
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
   const [isCalorieModalOpen, setIsCalorieModalOpen] = useState(false);
   const [newMealName, setNewMealName] = useState('');
   const [newMealCalories, setNewMealCalories] = useState('');
   const [newMealProtein, setNewMealProtein] = useState('');
 
+<<<<<<< HEAD
+=======
+  // Handler pentru adăugarea unei mese (folosește funcția addMeal din context)
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
   const handleAddMealSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newMealName || !newMealCalories) return;
@@ -54,6 +75,7 @@ export default function Dashboard() {
     }
   };
 
+<<<<<<< HEAD
   // Funcție pentru click-ul pe cardul de apă
   const handleWaterClick = async () => {
     if (isSavingWater || waterGlasses >= 8) return;
@@ -66,6 +88,27 @@ export default function Dashboard() {
   return (
     <main className="h-full w-full p-6 lg:p-12 overflow-y-auto relative z-10 custom-scrollbar">
       <motion.div className="max-w-5xl mx-auto" initial="hidden" animate="show" variants={containerVariants}>
+=======
+  // Variante pentru animații fluide
+  const containerVariants = { 
+    hidden: { opacity: 0 }, 
+    show: { opacity: 1, transition: { staggerChildren: 0.1 } } 
+  };
+  
+  const itemVariants = { 
+    hidden: { opacity: 0, y: 20 }, 
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 80 } } 
+  };
+
+  return (
+    <main className="h-full w-full p-6 lg:p-12 overflow-y-auto relative z-10">
+      <motion.div 
+        className="max-w-5xl mx-auto" 
+        initial="hidden" 
+        animate="show" 
+        variants={containerVariants}
+      >
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
         
         {/* Header Secțiune */}
         <motion.div variants={itemVariants} className="flex justify-between items-end mb-10">
@@ -83,13 +126,18 @@ export default function Dashboard() {
           </div>
         </motion.div>
 
+<<<<<<< HEAD
         {/* Grid Statistici Interactive */}
+=======
+        {/* Grid Statistici (Datele vin instant din context) */}
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
         <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <StatCard 
             icon={<Flame className="text-orange-500" />} 
             title="Calorii Consumate" 
             value={loading ? "..." : totalCalories.toLocaleString('en-US')} 
             subtext="/ 2,500 kcal" 
+<<<<<<< HEAD
             onClick={() => router.push('/dashboard/nutritie')} // Click către Nutriție
           />
           <StatCard 
@@ -98,6 +146,14 @@ export default function Dashboard() {
             value={loading ? "..." : `${(waterGlasses * 0.25).toFixed(1)}L`} 
             subtext={waterGlasses >= 8 ? "Obiectiv atins! 💧" : `Apasa pt +1 pahar (${waterGlasses}/8)`} 
             onClick={handleWaterClick} // Adaugă apă instant
+=======
+          />
+          <StatCard 
+            icon={<Droplet className="text-blue-500" />} 
+            title="Hidratare" 
+            value={loading ? "..." : `${(waterGlasses * 0.25).toFixed(1)}L`} 
+            subtext={`/ 2.0 Litri (${waterGlasses} pahare)`} 
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
           />
           <StatCard 
             icon={<Dumbbell className="text-purple-500" />} 
@@ -105,7 +161,10 @@ export default function Dashboard() {
             value={loading ? "..." : todayWorkout} 
             subtext={todayWorkout === "Fără antrenament" ? "Nu uita să te miști!" : "Completat azi"} 
             highlight={todayWorkout !== "Fără antrenament"} 
+<<<<<<< HEAD
             onClick={() => router.push('/dashboard/antrenamente')} // Click către Antrenamente
+=======
+>>>>>>> 8bebb57754bc1f54798aadde33c225e9d7aa5034
           />
         </motion.div>
 
